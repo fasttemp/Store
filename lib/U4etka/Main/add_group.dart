@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:store/U4etka/products.dart';
+import 'package:store/U4etka/Main/products.dart';
 
 class AddGroup extends StatefulWidget {
   const AddGroup({super.key});
@@ -14,7 +18,8 @@ class _AddGroupState extends State<AddGroup> {
   TextEditingController nameController = TextEditingController();
   TextEditingController scannerController = TextEditingController();
 
-  get index => null;
+  PlatformFile? pickedFile;
+
   @override
   void initState() {
     super.initState();
@@ -34,15 +39,24 @@ class _AddGroupState extends State<AddGroup> {
     }
   }
 
-  Future createGroup(String name, String scanner) async {
+  Future createGroup(String name, String scanner, String image) async {
     try {
       await FirebaseFirestore.instance
           .collection('group')
           .doc()
-          .set({'name': name, 'scanner': int.parse(scanner)});
+          .set({'name': name, 'scanner': int.parse(scanner), 'photo': image});
     } catch (e) {
       print(e);
     }
+  }
+
+  Future selectFile() async {
+    final result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    setState(() {
+      pickedFile = result.files.first;
+    });
   }
 
   @override
@@ -59,17 +73,22 @@ class _AddGroupState extends State<AddGroup> {
               SizedBox(width: 40),
               Expanded(
                   child: InkWell(
-                      onTap: () {
-                        createGroup(
-                            nameController.text, scannerController.text);
+                      onTap: () async {
+                        final path = 'files/${pickedFile!.name}';
+                        final file = File(pickedFile!.path!);
+                        final ref = FirebaseStorage.instance.ref().child(path);
+                        ref.putFile(file);
+
+                        final String imageUrl = await ref.getDownloadURL();
+
+                        createGroup(nameController.text, scannerController.text,
+                            imageUrl);
                         getGroup();
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Products(
-                                name: group[index]['name'],
-                                scanner: group[index]['scanner'],
-                              ),
+                              builder: (context) => Products(),
                             ));
                       },
                       child: Icon(Icons.check_circle, size: 35)))
@@ -89,34 +108,49 @@ class _AddGroupState extends State<AddGroup> {
                 keyboardType: TextInputType.text,
               ),
               TextField(
+                maxLength: 12,
                 controller: scannerController,
                 decoration: InputDecoration(
                   labelText: 'Штрих-код',
                 ),
                 keyboardType: TextInputType.text,
               ),
-              SizedBox(height: 10),
-              Text(
-                'Цвет папки',
-                style: TextStyle(fontSize: 20),
-              ),
-              SizedBox(height: 10),
-              Text('Показывать на складах:', style: TextStyle(fontSize: 20)),
+              // SizedBox(height: 10),
+              // Text(
+              //   'Цвет папки',
+              //   style: TextStyle(fontSize: 20),
+              // ),
+              // SizedBox(height: 10),
+              // Text('Показывать на складах:', style: TextStyle(fontSize: 20)),
               SizedBox(height: 40),
               Center(
                 child: Column(
                   children: [
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.photo_camera,
-                        )),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.image,
-                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100, right: 100),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        child: ElevatedButton(
+                            onPressed: () async {
+                              selectFile();
+                              final result =
+                                  await FilePicker.platform.pickFiles();
+                              if (result == null) {
+                                pickedFile = result?.files.first;
+                              }
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Icon(
+                                  Icons.image,
+                                ),
+                              ],
+                            )),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:store/U4etka/main_menu.dart';
+import 'package:store/U4etka/Main/main_menu.dart';
+import 'package:store/U4etka/Persons/persons.dart';
 
 class BottomMenu extends StatefulWidget {
   const BottomMenu({super.key});
@@ -13,7 +14,7 @@ class _BottomMenuState extends State<BottomMenu> {
   List<Widget>widgets = [
   
     MainMenu(),
-    Text('Basket'),
+    Persons(),
     Text('Profile'),
   ];
   @override

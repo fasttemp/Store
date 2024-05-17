@@ -8,10 +8,13 @@ environment:
 
 dependencies:
   cloud_firestore: ^4.17.3
+  file_picker: ^8.0.3
   firebase_core: ^2.31.0
+  firebase_storage: ^11.7.5
   floating_action_bubble: ^1.1.4
   flutter:
     sdk: flutter
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:store/U4etka/Persons/add_provider.dart';
+import 'package:store/U4etka/Persons/provider.dart';
 import 'package:store/U4etka/bottom_menu.dart';
 
 void main() async {

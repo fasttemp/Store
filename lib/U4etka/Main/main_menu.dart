@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store/U4etka/products.dart';
+import 'package:store/U4etka/Main/new_incoming.dart';
+import 'package:store/U4etka/Main/products.dart';
+import 'package:store/U4etka/Main/reports.dart';
 
 class MainMenu extends StatefulWidget {
   const MainMenu({super.key});
@@ -31,7 +33,7 @@ class _MainMenuState extends State<MainMenu> {
               children: [
                 Expanded(
                   child: InkWell(onTap: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => Products(name: '', scanner: '',)));
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => Products()));
                   },
                     child: Container(
                         decoration: BoxDecoration(
@@ -82,20 +84,25 @@ class _MainMenuState extends State<MainMenu> {
             child: Row(
               children: [
                 Expanded(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadiusDirectional.circular(20),
-                          color: Colors.blue),
-                      height: 100,
-                      child: Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.graphic_eq_outlined),
-                          Text('Отчёты',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500)),
-                        ],
-                      )),
+                  child: InkWell(
+                     onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Reports()));
+                     },
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadiusDirectional.circular(20),
+                            color: Colors.blue),
+                        height: 100,
+                        child: Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.graphic_eq_outlined),
+                            Text('Отчёты',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500)),
+                          ],
+                        )),
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
@@ -122,20 +129,25 @@ class _MainMenuState extends State<MainMenu> {
             child: Row(
               children: [
                 Expanded(
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadiusDirectional.circular(20),
-                          color: Colors.blue),
-                      height: 100,
-                      child: Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.plus_one),
-                          Text('Новый Приход',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500)),
-                        ],
-                      )),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NewIncoming()));
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadiusDirectional.circular(20),
+                            color: Colors.blue),
+                        height: 100,
+                        child: Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.plus_one),
+                            Text('Новый Приход',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500)),
+                          ],
+                        )),
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
