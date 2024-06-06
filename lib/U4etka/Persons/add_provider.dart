@@ -56,36 +56,23 @@ class _AddProviderState extends State<AddProvider> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back_ios_new,
+                  size: 25, color: Colors.white)),
+          backgroundColor: Color.fromARGB(210, 15, 145, 185),
           centerTitle: true,
           title: Row(
             children: [
               Text(
                 'Добавить поставщика',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
               ),
-              SizedBox(width: 10),
-              Expanded(
-                  child: InkWell(
-                child: Icon(
-                  Icons.check_circle,
-                  size: 40,
-                  color: Color.fromARGB(255, 23, 136, 33),
-                ),
-                onTap: () {
-                  createProvider(
-                      nameController.text,
-                      addressController.text,
-                      emailController.text,
-                      phoneController.text,
-                      idController.text,
-                      ibanController.text,
-                      footnoteController.text);
-
-                    getProvider();
-                    
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Provider()));
-                },
-              ))
             ],
           ),
         ),
@@ -96,58 +83,107 @@ class _AddProviderState extends State<AddProvider> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: nameController,
                   decoration: InputDecoration(
                       labelText: 'Наименование',
-                      labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.green,
-                          fontWeight: FontWeight.w500)),
+                      labelStyle: TextStyle(fontSize: 20)),
                   keyboardType: TextInputType.text,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: addressController,
                   decoration: InputDecoration(
-                    labelText: 'Адрес',
-                  ),
+                      labelText: 'Адрес', labelStyle: TextStyle(fontSize: 20)),
+                  maxLines: null,
                   keyboardType: TextInputType.text,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: emailController,
                   decoration: InputDecoration(
-                    labelText: 'Эл.почта',
-                  ),
+                      labelText: 'Эл.почта',
+                      labelStyle: TextStyle(fontSize: 20)),
                   keyboardType: TextInputType.emailAddress,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: phoneController,
                   decoration: InputDecoration(
-                    labelText: 'Телефон',
-                  ),
+                      labelText: 'Телефон',
+                      labelStyle: TextStyle(fontSize: 20)),
                   keyboardType: TextInputType.phone,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: idController,
                   decoration: InputDecoration(
-                    labelText: 'ИИН',
-                  ),
+                      labelText: 'ИИН', labelStyle: TextStyle(fontSize: 20)),
                   keyboardType: TextInputType.number,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: ibanController,
                   decoration: InputDecoration(
-                    labelText: 'Банковские реквизиты',
-                  ),
+                      labelText: 'Банковские реквизиты',
+                      labelStyle: TextStyle(fontSize: 20)),
                   keyboardType: TextInputType.text,
                 ),
                 TextField(
+                  style: TextStyle(fontSize: 25),
                   controller: footnoteController,
                   decoration: InputDecoration(
-                    labelText: 'Примечание',
-                    floatingLabelStyle: TextStyle(color: Colors.green),
-                  ),
+                      labelText: 'Примечание',
+                      labelStyle: TextStyle(fontSize: 20)),
+                  maxLines: null,
                   keyboardType: TextInputType.text,
-                  
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(150, 50)),
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(210, 15, 145, 185)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)))),
+                    onPressed: () async {
+                      if (nameController.text.isEmpty ||
+                          addressController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          phoneController.text.isEmpty ||
+                          idController.text.isEmpty ||
+                          ibanController.text.isEmpty ||
+                          footnoteController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          backgroundColor: Color.fromARGB(210, 15, 145, 185),
+                          content: Center(
+                            child: Text(
+                              'Заполните все поля !!!',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ));
+                        return;
+                      } else {
+                        createProvider(
+                            nameController.text,
+                            addressController.text,
+                            emailController.text,
+                            phoneController.text,
+                            idController.text,
+                            ibanController.text,
+                            footnoteController.text);
+                        getProvider();
+                      }
+
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Добавить',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),

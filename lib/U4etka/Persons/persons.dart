@@ -16,10 +16,10 @@ class _PersonsState extends State<Persons> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(210, 15, 145, 185),
         title: Text(
           'Контрагенты',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500,color:Colors.white),
         ),
       ),
       body: Padding(
@@ -29,43 +29,57 @@ class _PersonsState extends State<Persons> {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Provider()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Provider()));
                 },
                 child: Container(
-                  width: double.infinity,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadiusDirectional.circular(50),
-                        color: Colors.blue),
+                      borderRadius: BorderRadiusDirectional.circular(50),
+                      color: Color.fromARGB(210, 15, 145, 185),
+                    ),
                     height: 100,
-                    
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.person_2_outlined),
+                        Icon(Icons.person_2_outlined,
+                            size: 30, color: Colors.white),
                         Text('Поставщики',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white)),
                       ],
                     )),
               ),
             ),
             SizedBox(height: 40),
-             Expanded(
+            Expanded(
               child: InkWell(
-                   onTap: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => Buyers()));
-                   },
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Buyers()));
+                },
                 child: Container(
-                   width: double.infinity,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadiusDirectional.circular(50),
-                        color: Colors.blue),
+                      borderRadius: BorderRadiusDirectional.circular(50),
+                      color: Color.fromARGB(210, 15, 145, 185),
+                    ),
                     height: 100,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.person_2_outlined),
+                        Icon(
+                          Icons.person_2_outlined,
+                          size: 30,
+                          color: Colors.white,
+                        ),
                         Text('Покупатели',
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white)),
                       ],
                     )),
               ),

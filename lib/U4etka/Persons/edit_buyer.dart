@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
@@ -14,7 +13,6 @@ class EditBuyer extends StatefulWidget {
 }
 
 class _EditBuyerState extends State<EditBuyer> {
-  
   TextEditingController nameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -48,8 +46,8 @@ class _EditBuyerState extends State<EditBuyer> {
     footnoteController.dispose();
   }
 
-  Future updateBuyers(String name, String address, String email,
-      String phone, String id, String iban, String footnote) async {
+  Future updateBuyers(String name, String address, String email, String phone,
+      String id, String iban, String footnote) async {
     try {
       await FirebaseFirestore.instance
           .collection('buyers')
@@ -74,9 +72,22 @@ class _EditBuyerState extends State<EditBuyer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            size: 25,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Color.fromARGB(210, 15, 145, 185),
+        centerTitle: true,
         title: Text(
-          'Редактировать данные',
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+          'Покупатель',
+          style: TextStyle(
+              fontSize: 30, fontWeight: FontWeight.w500, color: Colors.white),
         ),
       ),
       body: SingleChildScrollView(
@@ -150,22 +161,29 @@ class _EditBuyerState extends State<EditBuyer> {
                 keyboardType: TextInputType.text,
               ),
               SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    updateBuyers(
-                        nameController.text,
-                        addressController.text,
-                        emailController.text,
-                        phoneController.text,
-                        idController.text,
-                        ibanController.text,
-                        footnoteController.text
-                        );
-                  },
-                  child: Text(
-                    'Обновить',
-                    style: TextStyle(fontSize: 15),
-                  ))
+              Center(
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(150, 50)),
+                        backgroundColor: MaterialStateProperty.all(
+                            Color.fromARGB(210, 15, 145, 185)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)))),
+                    onPressed: () {
+                      updateBuyers(
+                          nameController.text,
+                          addressController.text,
+                          emailController.text,
+                          phoneController.text,
+                          idController.text,
+                          ibanController.text,
+                          footnoteController.text);
+                    },
+                    child: Text(
+                      'Обновить',
+                      style: TextStyle(fontSize: 20,color: Colors.white),
+                    )),
+              )
             ],
           ),
         ),
