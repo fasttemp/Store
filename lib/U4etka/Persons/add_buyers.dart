@@ -141,11 +141,14 @@ TextEditingController nameController = TextEditingController();
                   keyboardType: TextInputType.text,
                 ),
                 TextField(
+
                   controller: footnoteController,
                   decoration: InputDecoration(
                     labelText: 'Примечание',
                     floatingLabelStyle: TextStyle(color: Colors.green),
+                    
                   ),
+                  maxLines: null,
                   keyboardType: TextInputType.text,
                   
                 ),
