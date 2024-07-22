@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:store/U4etka/Persons/buyers.dart';
@@ -19,7 +20,8 @@ class _PersonsState extends State<Persons> {
         backgroundColor: Color.fromARGB(210, 15, 145, 185),
         title: Text(
           'Контрагенты',
-          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500,color:Colors.white),
+          style: TextStyle(
+              fontSize: 30, fontWeight: FontWeight.w500, color: Colors.white),
         ),
       ),
       body: Padding(
@@ -35,6 +37,13 @@ class _PersonsState extends State<Persons> {
                 child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              Color.fromARGB(210, 5, 53, 67).withOpacity(0.2),
+                          offset: Offset(0, 5),
+                        )
+                      ],
                       borderRadius: BorderRadiusDirectional.circular(50),
                       color: Color.fromARGB(210, 15, 145, 185),
                     ),
@@ -63,6 +72,13 @@ class _PersonsState extends State<Persons> {
                 child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color:
+                              Color.fromARGB(210, 5, 53, 67).withOpacity(0.2),
+                          offset: Offset(0, 5),
+                        ),
+                      ],
                       borderRadius: BorderRadiusDirectional.circular(50),
                       color: Color.fromARGB(210, 15, 145, 185),
                     ),

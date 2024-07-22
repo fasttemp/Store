@@ -138,6 +138,7 @@ class _NewIncomingState extends State<NewIncoming> {
                     selectedProvider == null ||
                     selectedProducts.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    duration: Duration(seconds: 3),
                     backgroundColor: Color.fromARGB(210, 15, 145, 185),
                     content: Text(
                       'Заполните все поля и выберите поставщика и продукты',

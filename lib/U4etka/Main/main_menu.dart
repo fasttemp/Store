@@ -42,9 +42,15 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadiusDirectional.circular(20),
-                          color: Color.fromARGB(210, 15, 145, 185),
-                        ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(210, 5, 53, 67)
+                                    .withOpacity(0.2),
+                                offset: Offset(0, 5),
+                              )
+                            ],
+                            borderRadius: BorderRadiusDirectional.circular(20),
+                            color: Color.fromARGB(210, 15, 145, 185)),
                         height: 100,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +78,13 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(210, 5, 53, 67)
+                                  .withOpacity(0.2),
+                              offset: Offset(0, 5),
+                            )
+                          ],
                           borderRadius: BorderRadiusDirectional.circular(20),
                           color: Color.fromARGB(210, 15, 145, 185),
                         ),
@@ -108,6 +121,13 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(210, 5, 53, 67)
+                                  .withOpacity(0.2),
+                              offset: Offset(0, 5),
+                            )
+                          ],
                           borderRadius: BorderRadiusDirectional.circular(20),
                           color: Color.fromARGB(210, 15, 145, 185),
                         ),
@@ -135,6 +155,13 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(210, 5, 53, 67)
+                                  .withOpacity(0.2),
+                              offset: Offset(0, 5),
+                            )
+                          ],
                           borderRadius: BorderRadiusDirectional.circular(20),
                           color: Color.fromARGB(210, 15, 145, 185),
                         ),
@@ -170,6 +197,13 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(210, 5, 53, 67)
+                                  .withOpacity(0.2),
+                              offset: Offset(0, 5),
+                            )
+                          ],
                           borderRadius: BorderRadiusDirectional.circular(20),
                           color: Color.fromARGB(210, 15, 145, 185),
                         ),
@@ -187,7 +221,6 @@ class _MainMenuState extends State<MainMenu> {
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white)),
-                            
                           ],
                         )),
                   ),
@@ -201,6 +234,13 @@ class _MainMenuState extends State<MainMenu> {
                     },
                     child: Container(
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(210, 5, 53, 67)
+                                  .withOpacity(0.2),
+                              offset: Offset(0, 5),
+                            )
+                          ],
                           borderRadius: BorderRadiusDirectional.circular(20),
                           color: Color.fromARGB(210, 15, 145, 185),
                         ),
@@ -218,7 +258,6 @@ class _MainMenuState extends State<MainMenu> {
                                     fontSize: 25,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white)),
-                            
                           ],
                         )),
                   ),
